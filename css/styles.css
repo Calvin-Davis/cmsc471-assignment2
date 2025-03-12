@@ -13,7 +13,12 @@
     font-family: Arial, sans-serif;
 }
 
-#vis svg {
+#vis .svg-container {
+    display: inline-block;
+    vertical-align: top;
+}
+
+svg {
     margin: 2rem 0;
     border: 1px solid #ccc; /*otherwise you can't see this part*/
 }
