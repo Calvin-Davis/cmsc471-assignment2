@@ -315,8 +315,6 @@ function bakePie(pieData, titleText) {
 }
 
 function updateChart(currentData, xVarName, yVarName, xTickLabel, xDomain, xLabel, yLabel, barColor, titleText){
-    // svg.selectAll('.axis').remove()
-    // svg.selectAll('.labels').remove()
 
     xScale.domain(xDomain)
     xAxis.call(d3.axisBottom(xScale).tickFormat(xTickLabel))
@@ -331,7 +329,6 @@ function updateChart(currentData, xVarName, yVarName, xTickLabel, xDomain, xLabe
     svg.selectAll('rect')
     .data(currentData, d => d[xVarName])
     .join(
-        // When we have new data points
         function(enter){
             return enter
             .append('rect')
@@ -367,7 +364,6 @@ function updateChart(currentData, xVarName, yVarName, xTickLabel, xDomain, xLabe
             .attr("y", d => yScale(d[yVarName]))
             .attr("height", d => height - yScale(d[yVarName]));
         },
-        // Update existing points when data changes
         function(update){
             return update
             .attr("x", d => xScale(d[xVarName]))
@@ -375,7 +371,6 @@ function updateChart(currentData, xVarName, yVarName, xTickLabel, xDomain, xLabe
             .attr("height", d => height - yScale(d[yVarName]))
             .attr("width", xScale.bandwidth());
         },
-        // Remove points that no longer exist in the filtered data 
         function(exit){
             return exit
             .transition()
@@ -399,41 +394,5 @@ function getGroupedByTypeForMonth(month) {
     filtered = allData.filter(d => d3.timeFormat("%m")(d.datetime) == month);
     return Array.from(d3.rollup(filtered, v => v.length, d => d.type), ([type, count]) => ({type, count}));
 }
-
-// function addLegend(){
-// // Adds a legend so users can decode colors
-//     let size = 10  // Size of the legend squares
-
-//     // Your turn, draw a set of rectangles using D3
-//     svg.selectAll('continentSquare')
-//     .data(continents)
-//     .join(
-//         function(enter) {
-//             return enter
-//             .append('rect')
-//             .attr('x', function(d, i) { return i * (size + 100) + 100})
-//             .attr('y', -margin.top/2)
-//             .attr('width', size)
-//             .attr('height', size)
-//             .style('fill', d => colorScale(d))
-//         }
-//     )
-
-//     svg.selectAll("continentName")
-//         .data(continents)
-//         .enter()
-//         .append("text")
-//         .attr("y", -margin.top/2 + size) // Align vertically with the square
-//         .attr("x", (d, i) => i * (size + 100) + 120)  
-//         .style("fill", d => colorScale(d))  // Match text color to the square
-//         .text(d => d) // The actual continent name
-//         .attr("text-anchor", "left")
-//         .style('font-size', '13px')
-//     // data here should be "continents", which we've defined as a global variable
-//     // the rect's y could be  -margin.top/2, x could be based on i * (size + 100) + 100
-//     // i is the index in the continents array
-//     // use "colorScale" to fill them; colorScale is a global variable we defined, used in coloring bubbles
-//     .style("fill", d => colorScale(d))
-// }
 
 window.addEventListener('load', init);

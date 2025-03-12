@@ -9,6 +9,31 @@
 <body style="background-color:#fff3f0">
     <div class="container"> <!-- Centers content and sets max width -->
         <h1>Chicago Crime: Interactive Visualization</h1>
+        <p>dataset</p>
+        <ul>
+            <li>the chicago crime dataset from the assignment description; specifically the data from 2024 (need a link to it)</li>
+            <li>chose the data on type of crime and date of crime</li>
+        </ul>
+        <p>rationale for design decisions</p>
+        <ul>
+            <li>red bars because crime = violent</li>
+            <li>bar chart because x data is ordinal and y data is ratio data</li>
+            <li>used a categorical color scheme for the pie chart because crime type is nominal and we don't want to imply any order to that</li>
+            <li>added tooltips for the pie chart so that users can see more info about each slice (type it represents, percentage, total count) without cluttering the chart and also encouraging interaction</li>
+            <li>made it so that a clicked bar turns orange, and then the day-level bars that pop up are also orange, so that it encourages the idea that the resulting day-data is based on the clicked month bar (which it is)</li>
+            <li>added functionality and text tip for being able to click on a day-level bar to go back to month level, so users can freely explore and go back without refreshing</li>
+            <li>animated bars and pie slices just because it is engaging and entertaining, as well as being indicative of the interactions</li>
+        </ul>
+        <p>development process</p>
+        <ul>
+            <li>code took about 8 hours</li>
+            <li>parts that took the longest:</li>
+            <ul>
+                <li>organizing the data and figuring out how to aggregate it, since it's quite a bit of data and somewhat messy. also parsing dates is a little annoying</li>
+                <li>grouping the less common crime types into "other offense" for the pie chart, figuring out best method for it and the logic for it</li>
+                <li>formatting the legend for the pie chart. just getting it to a proper size and good position.</li>
+            </ul>
+        </ul>
         <div id="vis"></div> <!--  Will hold our visualization (SVG) -->
     </div>
     <div id="tooltip" style="display:none"></div> 
